@@ -30,7 +30,7 @@ router.get("/:id", authentication, async (req, res) => {
 router.post("/add", authentication, async (req, res) => {
     const { title, description, duedate, priority, status } = req.body;
     try {
-        const data = await ProductModule.create({ title, description, duedate, priority, status });
+        const data = await ProductModule.create({title, description, duedate, priority, status });
         res.status(200).send("data posted: " + data);
     } catch (error) {
         console.log(error);
@@ -57,7 +57,7 @@ router.put("/:id", authentication, async (req, res) => {
     }
 });
 
-router.delete("/:id", authentication, async (req, res) => {
+router.delete("/:id", authentication,async (req, res) => {
     const { id } = req.params;
     try {
         const deletedProduct = await ProductModule.findByIdAndDelete(id);

@@ -11,7 +11,6 @@ const userSchema = mongoose.Schema({
 
 
 const ProductSchema = mongoose.Schema({
-    id : {type:String , required:true},
     title : {type : String , required:true},
     description : {type:String , required:true},
     duedate : {type:String , required:true},
