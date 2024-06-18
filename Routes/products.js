@@ -3,15 +3,15 @@ const authentication = require('../auth/authentication');
 const { ProductModule } = require('../connection/connection');
 const router = express.Router();
 
-router.get("/" , authentication , async (req , res)=>{
+router.get("/",authentication, async (req, res) => {
     try {
         const data = await ProductModule.find();
         res.status(200).send(data);
     } catch (error) {
         console.log(error);
-        res.status(500).send("Error From Get Function: "+ error.message);
+        res.status(500).send("Error From Get Function: " + error.message);
     }
-})
+});
 
 router.get("/:id", authentication, async (req, res) => {
     const { id } = req.params;
@@ -27,16 +27,16 @@ router.get("/:id", authentication, async (req, res) => {
     }
 });
 
-router.post("/add" , authentication , async( req , res)=>{
-    const {id,title,description,duedate,priority,status} = req.body;
+router.post("/add", authentication, async (req, res) => {
+    const { title, description, duedate, priority, status } = req.body;
     try {
-        const data = await ProductModule.create({id,title,description,duedate,priority,status});
-        res.status(200).send("data posted :"+ data);
+        const data = await ProductModule.create({ title, description, duedate, priority, status });
+        res.status(200).send("data posted: " + data);
     } catch (error) {
         console.log(error);
-        res.status(500).send("Error From add Function: "+ error.message);
+        res.status(500).send("Error From add Function: " + error.message);
     }
-})
+});
 
 router.put("/:id", authentication, async (req, res) => {
     const { id } = req.params;
@@ -70,6 +70,5 @@ router.delete("/:id", authentication, async (req, res) => {
         res.status(500).send("Error From delete Function: " + error.message);
     }
 });
-
 
 module.exports = router;
